@@ -1,0 +1,87 @@
+.App {
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #F8EEE1;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+
+  // Stili per link nella sidebar
+  a {
+    text-decoration: none;
+    color: #333;
+
+    &:hover {
+      color: #007bff; // Colore al passaggio del mouse
+    }
+  }
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px 0;
+}
+
+.header {
+  padding: 20px;
+}
+
+.content {
+  margin-left: 220px; // Spazio per la sidebar
+  padding: 20px;
+
+  // Media query per schermi più piccoli
+  @media (max-width: 768px) {
+    margin-left: 0; // Rimuovi il margine sinistro
+    padding: 10px; // Riduci il padding
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+  // Responsive table styles
+  @media (max-width: 768px) {
+    display: block; // Fai diventare la tabella un blocco su schermi piccoli
+    overflow-x: auto; // Permetti lo scroll orizzontale
+  }
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+// Stili per i bottoni
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  // Aggiunta di stili per il hover
+  &:hover {
+    color: #007bff; // Cambia colore al passaggio del mouse
+  }
+}
+
+// Stili per il modal
+.modal-content {
+  padding: 20px;
+
+  input {
+    margin-bottom: 10px; // Spazio tra i campi
+  }
+}
