@@ -11,14 +11,14 @@ const EditUserModal = ({ show, handleClose, handleSave, user }) => {
     company: "",
   });
 
-  // Pre-popolare il form con i dati dell'utente da modificare
+  
   useEffect(() => {
     if (user) {
       setFormData({
         id: user.id || "",
         name: user.name || "",
         email: user.email || "",
-        address: user.address?.street || "", // Puoi regolare questo in base alla struttura del tuo oggetto user
+        address: user.address?.street || "",
         phone: user.phone || "",
         company: user.company?.name || "",
       });
@@ -31,8 +31,8 @@ const EditUserModal = ({ show, handleClose, handleSave, user }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSave(formData); // Passa i dati modificati all'esterno
-    handleClose(); // Chiudi la modale
+    handleSave(formData);
+    handleClose();
   };
 
   return (
