@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { Card, Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -15,10 +18,25 @@ const PostsPage = () => {
     fetchPosts();
   }, []);
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   return (
     <div className="dashboard">
-      <Sidebar />
-      <div className="content">
+      <div className="header2">
+        <FontAwesomeIcon 
+          icon={faBars} 
+          className="menu-icon" 
+          onClick={toggleSidebar} 
+        />
+      </div>
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+      <div className={`content ${sidebarOpen ? "open" : ""}`}>
         <h2 className="mb-4">Post</h2>
         <Row>
           {posts.map((post) => (
