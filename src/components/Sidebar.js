@@ -1,11 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImages, faPencil, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faImages, faPencil, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
+  console.debug(isOpen)
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isOpen ? "open" : ""}`}>
+      {isOpen && (
+        <div className="d-flex justify-content-end">
+          <FontAwesomeIcon 
+            icon={faTimes} 
+            className="close-icon" 
+            onClick={onClose} 
+            style={{ cursor: 'pointer', margin: '10px' }} 
+          />
+        </div>
+      )}
       <ul className="list-unstyled">
         <li>
           <Link className='text-decoration-none' to="/">

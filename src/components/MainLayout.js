@@ -4,6 +4,8 @@ import UserTable from "./UserTable";
 import AddUserModal from "./AddUserModal";
 import EditUserModal from "./EditUserModal";
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const MainLayout = () => {
   const [users, setUsers] = useState([]);
@@ -11,6 +13,7 @@ const MainLayout = () => {
   const [modalAddUser, setModalAddUser] = useState(false);
   const [modalEditUser, setModalEditUser] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -32,12 +35,11 @@ const MainLayout = () => {
   );
 
   const handleEdit = (user) => {
-    setSelectedUser(user); // Imposta l'utente da modificare
-    setModalEditUser(true); // Mostra la modale di modifica
+    setSelectedUser(user);
+    setModalEditUser(true);
   };
 
   const handleDelete = (userId) => {
-    console.log("Delete user", userId);
     setUsers(users.filter((user) => user.id !== userId));
   };
 
@@ -54,10 +56,25 @@ const MainLayout = () => {
     setModalEditUser(false);
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   return (
     <div className="dashboard">
-      <Sidebar />
-      <div className="content">
+      <div className="header2">
+        <FontAwesomeIcon 
+          icon={faBars} 
+          className="menu-icon" 
+          onClick={toggleSidebar} 
+        />
+      </div>
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+      <div className={`content ${sidebarOpen ? "open" : ""}`}>
         <input
           onChange={handleSearch}
           type="text"

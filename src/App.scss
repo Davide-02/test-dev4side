@@ -2,45 +2,102 @@
   font-family: Arial, sans-serif;
 }
 
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  margin: 10px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
 .sidebar {
   width: 200px;
-  background-color: #F8EEE1;
+  background-color: #f8eee1;
   padding: 20px;
   position: fixed;
   height: 100%;
+  transition: transform 0.3s ease-in-out;
 
-  // Stili per link nella sidebar
   a {
     text-decoration: none;
     color: #333;
 
     &:hover {
-      color: #007bff; // Colore al passaggio del mouse
+      color: #007bff;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 10px 0;
+  }
+
+  @media (max-width: 768px) {
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    z-index: 999;
+    height: 100%;
+
+    &.open {
+      @media (max-width: 768px) {
+        padding-top: 100px;
+        transform: translateX(0);
+      }
     }
   }
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 10px 0;
-}
-
 .header {
   padding: 20px;
+  background-color: #f8eee1;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 4px 2px -2px gray;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+}
+
+.header2 {
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+}
+
+.dashboard {
+  background-color: #f8eee1;
+
+  @media (max-width: 768px) {
+    .content {
+      margin-left: 0;
+      padding: 10px;
+    }
+  }
 }
 
 .content {
-  margin-left: 220px; // Spazio per la sidebar
+  margin-left: 220px;
   padding: 20px;
+  background-color: #fcf7f1;
+  transition: margin-left 0.3s ease;
 
-  // Media query per schermi più piccoli
   @media (max-width: 768px) {
-    margin-left: 0; // Rimuovi il margine sinistro
-    padding: 10px; // Riduci il padding
+    margin-left: 0;
+    padding: 10px;
   }
 }
 
@@ -49,39 +106,38 @@ table {
   border-collapse: collapse;
   margin-top: 20px;
 
-  // Responsive table styles
   @media (max-width: 768px) {
-    display: block; // Fai diventare la tabella un blocco su schermi piccoli
-    overflow-x: auto; // Permetti lo scroll orizzontale
+    display: block;
+    overflow-x: auto;
   }
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid #ddd;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
 }
 
-// Stili per i bottoni
 button {
   background-color: transparent;
   border: none;
   cursor: pointer;
 
-  // Aggiunta di stili per il hover
   &:hover {
-    color: #007bff; // Cambia colore al passaggio del mouse
+    color: #007bff;
   }
 }
 
-// Stili per il modal
 .modal-content {
   padding: 20px;
 
   input {
-    margin-bottom: 10px; // Spazio tra i campi
+    margin-bottom: 10px;
   }
 }
