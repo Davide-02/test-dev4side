@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import UserTable from "./UserTable";
 import AddUserModal from "./AddUserModal";
+import EditUserModal from "./EditUserModal";
 import { Button } from "react-bootstrap";
 
 const MainLayout = () => {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [modalAddUser, setModalAddUser] = useState(false);
+  const [modalEditUser, setModalEditUser] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -28,8 +31,9 @@ const MainLayout = () => {
     user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleEdit = (userId) => {
-    console.log("Edit user", userId);
+  const handleEdit = (user) => {
+    setSelectedUser(user); // Imposta l'utente da modificare
+    setModalEditUser(true); // Mostra la modale di modifica
   };
 
   const handleDelete = (userId) => {
@@ -39,6 +43,15 @@ const MainLayout = () => {
 
   const handleSaveUser = (newUser) => {
     setUsers([...users, { id: users.length + 1, ...newUser }]);
+  };
+
+  const handleEditUser = (updatedUser) => {
+    setUsers(
+      users.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      )
+    );
+    setModalEditUser(false);
   };
 
   return (
@@ -68,6 +81,14 @@ const MainLayout = () => {
             show={modalAddUser}
             handleClose={() => setModalAddUser(false)}
             handleSave={handleSaveUser}
+          />
+        )}
+        {modalEditUser && selectedUser && (
+          <EditUserModal
+            show={modalEditUser}
+            handleClose={() => setModalEditUser(false)}
+            handleSave={handleEditUser}
+            user={selectedUser}
           />
         )}
       </div>

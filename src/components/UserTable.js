@@ -23,7 +23,7 @@ const UserTable = ({ users, onEdit, onDelete }) => {
             <td className="text-center">
               <Button
                 variant="warning"
-                onClick={() => onEdit(user.id)}
+                onClick={() => onEdit(user)}
                 className="me-2"
               >
                 <FontAwesomeIcon icon={faPencil} />
